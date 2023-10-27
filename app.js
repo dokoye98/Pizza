@@ -6,9 +6,10 @@ const mongoose = require('mongoose')
 require('dotenv/config')
 const bodyParser = require('body-parser')
 const app = express()
-
+const authRouter = require('./routes/auth')
 //MiddleWare - bodu-parser must come before the routers 
 app.use(bodyParser.json())
+app.use('/api',authRouter)
 
 
 
