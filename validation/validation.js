@@ -10,8 +10,8 @@ const signUpValidation = (data)=>{
     //the validation will follow a similar naming scheme because it is a schema validation
     const schemaValidation = joi.object({
        
-        firstname:joi.string().required().min(3).max(256),
-        lastname:joi.string().required().min(3).max(256),
+        firstname:joi.string().required().min(6).max(256),
+        lastname:joi.string().required().min(6).max(256),
         username:joi.string().required().min(6).max(256),
         email:joi.string().required().min(6).max(256).email(),
         password:joi.string().required().min(6).max(256)

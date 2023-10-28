@@ -10,10 +10,10 @@ const jsonwebtoken = require('jsonwebtoken')
 
 
 router.post('/signup',async(req,res)=>{
-    const {validation1} = (signUpValidation(req.body))
+    const {error} = (signUpValidation(req.body))
     const presentChecker = await User.findOne({email:req.body.email})
-    if(validation1){
-        return res.status(400).send({message:validation1["details"][0]["message"]})
+    if(error){
+        return res.status(400).send({message:error["details"][0]["message"]})
 
         //console.log(error["details"][0]["message"])
 }

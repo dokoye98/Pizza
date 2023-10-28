@@ -40,4 +40,4 @@ const UserSchema = mongoose.Schema({
 
 
 //always remember module export - the 'Users' is the name of the collection this will be linked to
-module.exports = mongoose.model('Users',UserSchema)
+module.exports = mongoose.model('users',UserSchema)
