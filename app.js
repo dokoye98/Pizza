@@ -7,9 +7,12 @@ require('dotenv/config')
 const bodyParser = require('body-parser')
 const app = express()
 const authRouter = require('./routes/auth')
-//MiddleWare - bodu-parser must come before the routers 
+//temporary
+const pizzaRouter = require('./routes/pizza')
+//MiddleWare - body-parser must come before the routers 
 app.use(bodyParser.json())
 app.use('/api',authRouter)
+app.use('/api/pizza',pizzaRouter)
 
 
 

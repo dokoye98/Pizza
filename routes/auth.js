@@ -53,4 +53,26 @@ router.get('/',async(req,res)=>{
         res.status(400).send({message:err})
     }
 })
+
+router.post('/login',async(req,res)=>{
+    const {error} = (loginValidation(req.body))
+    if(error){
+        return res.status(400).send({mesasge:error['detail'][0]['message']})
+    }
+    //this is different from the signup methods as it wont move on if there isnt an account
+    const username = await User.findOne({username:req.body.username})
+    if(!username){
+        return res.status(400).send({message:'please sign up'})
+    }
+
+    //now the password must be decrypted and compared
+    const passWordValidator = await bcryptjs.compare(req.body.password,username.password)
+    if(!passWordValidator){
+        res.status(400).send({message:'incorrect password'})
+    }
+
+    //res.send({message:'success'})
+    const token = jsonwebtoken.sign({_id:username._id},process.env.TOKEN_SECRET)
+        res.header('auth-token',token).send({'auth-token':token})
+})
 module.exports = router
